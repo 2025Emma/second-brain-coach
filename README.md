@@ -1,51 +1,96 @@
-# second-brain-coach
+# Second Brain Coach
 
-面向中文用户的 PARA/CODE 教练型 Skill，帮助你把蒂亚戈·福特《打造第二大脑》的理念落地。它会根据对话自动判定：是需要做系统诊断、文件归档，还是回答理论/实践问题；并在全过程中强制执行 PARA 四问脚本，并引用我们整理的 BASB 摘要。
+基于 Tiago Forte《Building a Second Brain》方法论的个人知识管理教练 Skill。
 
-## 仓库结构
+帮助你系统性地构建第二大脑：从 PARA 分类体系到 CODE 工作流程，从系统诊断到文件归档，把零散的信息变成可复用的知识资产。
 
-`
-second-brain-coach/
-├── SKILL.md                       # Skill 元信息、工作流、守则
-├── README.md                      # 使用说明（本文件）
-├── LICENSE                        # MIT 许可
-└── references/                    # 可引用的知识速查
-    ├── basb-concepts.md           # BASB 定位、CODE 表格、常见问答
-    ├── para-decision-tree.md      # PARA 定义、四问脚本、分类示例
-    ├── system-diagnosis-checklist.md  # 诊断所需输入、常见差距、启动步骤
-    └── practice-prompts.md        # Capture→Express 各阶段练习题
-`
+## 功能
+
+| 功能模块 | 说明 |
+|---------|------|
+| **系统诊断** | 评估当前知识管理系统的健康度，识别常见缺口，给出针对性改进建议 |
+| **文件归档** | 遵循 PARA 四问决策树（项目/领域/资源/归档），引导你将文件归类到正确位置 |
+| **实践问答** | 解答第二大脑实践中的具体问题，引用 BASB 核心概念和最佳实践 |
+
+## 触发方式
+
+在支持 Skill 的 Agent 中，直接提及以下关键词即可激活：
+
+- "第二大脑"
+- "PARA"
+- "CODE"
+- "文件归档"
+- "知识管理"
 
 ## 安装方式
 
-1. 克隆或下载本仓库：
-   `ash
-   git clone https://github.com/2025Emma/second-brain-coach.git
-   `
-2. 将 second-brain-coach/ 整个文件夹复制到 Codex/WorkBuddy 读取的 skills 目录（默认 ~/.codex/skills/）。
-3. 重启 Codex 或在界面中 “Reload Skills”。系统会自动加载该 Skill。
+**通过 Agent 安装**
+
+在 Claude Code、Codex、OpenClaw 、WorkBuddy等支持 Skill 的 Agent 中，直接对话：
+
+```
+安装这个 skill：https://github.com/2025Emma/second-brain-coach
+```
+
+**手动安装**
+
+1. 克隆或下载本仓库
+2. 将 `second-brain-coach/` 文件夹复制到你的 Agent Skills 目录：
+
+| 工具 | 路径 |
+|------|------|
+| Claude Code | `~/.claude/skills/` |
+| OpenClaw | `~/.openclaw/skills/` |
+| Codex | `~/.codex/skills/` |
+| WorkBuddy| `~/.workbuddy/skills/` |
+
+3. 重启 Agent 或重新加载 Skills
+
+## 仓库结构
+
+```
+second-brain-coach/
+├── SKILL.md                     # Skill 定义：工作流、触发条件、约束规则
+├── README.md                    # 本文件
+├── LICENSE                      # MIT 许可证
+└── references/                  # 知识库参考资料
+    ├── basb-concepts.md         # BASB 核心概念、CODE 流程表、FAQ
+    ├── para-decision-tree.md    # PARA 定义、四问决策脚本、示例
+    ├── system-diagnosis-checklist.md  # 系统诊断问题清单、常见缺口
+    └── practice-prompts.md      # Capture → Express 实践练习
+```
 
 ## 使用说明
 
-- 触发条件：对话中出现 “第二大脑”“PARA”“CODE”“文件放哪里”“知识管理困惑”等关键词。
-- Skill 初始化时，会请用户选择【系统诊断】【文件归档】【实践问答】，或根据描述自行路由。
-- 回答过程中，必须引用 eferences/ 中对应条目（示例：（参见 basb-concepts:承诺#2）），避免粘贴原书大段文字。
+1. **激活 Skill**：提及第二大脑相关话题
+2. **选择模式**：Agent 会询问你想进行【系统诊断】【文件归档】【实践问答】中的哪一项
+3. **跟随引导**：根据所选模式，Skill 会引导你完成相应流程
 
-## 自检 / 校验
+### 引用规范
 
-在发布前，可以使用 skill-creator 提供的校验脚本快速检查结构是否合规：
+知识回答必须引用对应的参考文件章节，例如：
+- `basb-concepts:承诺#2`
+- `para-decision-tree:四问决策树`
 
-`ash
+## 验证
+
+发布前可使用 skill-creator 验证工具检查：
+
+```bash
 python /path/to/skill-creator/scripts/quick_validate.py second-brain-coach
-`
+```
 
-脚本依赖 pyyaml。如未安装，可先运行 pip install pyyaml。
+需要 `pyyaml`：
+```bash
+pip install pyyaml
+```
 
-## 关于引用
+## 关于参考资料
 
-- eferences/ 里的内容为我们手写的概括，确保不包含长篇原文。
-- 欢迎自行扩充参考笔记，但也请遵守 SKILL.md 中的引用指引，避免版权风险。
+- 参考文件包含对 Tiago Forte 著作的原创性总结
+- 避免大段引用原文，尊重版权
+- 欢迎扩展 `references/` 添加自己的笔记，但请在 SKILL.md 中维护引用规范
 
-## 开源许可
+## License
 
-本 Skill 以 MIT License 发布，可免费使用、修改和二次分发（保留版权声明即可）。如你喜欢这个 Skill，也欢迎分享或提交改进建议。
+[MIT](./LICENSE)
